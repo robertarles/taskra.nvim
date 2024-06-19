@@ -15,21 +15,23 @@ local function highlight_letter_code(line)
 	-- If a letter code was found, highlight it
 	if letter_code then
 		-- Get the start and end positions of the letter code
-		local start, _, finish_pos = line:find(pattern)
-		local finish = finish_pos and finish_pos - 1 or #line
+		local start, finish_pos = line:find(pattern)
+		if start and finish_pos then
+			local finish = finish_pos - 1
 
-		-- Define the highlight color based on the letter code
-		local highlight_color
-		if letter_code:lower() == "a" then
-			highlight_color = "ErrorMsg"
-		elseif letter_code:lower() == "b" then
-			highlight_color = "WarningMsg"
-		else
-			highlight_color = "MoreMsg"
+			-- Define the highlight color based on the letter code
+			local highlight_color
+			if letter_code:lower() == "a" then
+				highlight_color = "ErrorMsg"
+			elseif letter_code:lower() == "b" then
+				highlight_color = "WarningMsg"
+			else
+				highlight_color = "MoreMsg"
+			end
+
+			-- Define the highlight
+			vim.api.nvim_buf_add_highlight(0, highlight_group, highlight_color, start, finish, 0)
 		end
-
-		-- Define the highlight
-		vim.api.nvim_buf_add_highlight(0, highlight_group, highlight_color, start, finish, 0)
 	end
 end
 
