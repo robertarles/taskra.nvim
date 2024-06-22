@@ -24,7 +24,6 @@ function M.add_workflow_function(name, func)
 	M.workflow_functions[name] = func
 end
 
-ocal
 function apply_syntax_highlighting(bufnr, start_line, end_line)
 	bufnr = bufnr or 0
 	start_line = start_line or 0
