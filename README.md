@@ -1,11 +1,7 @@
 # taskra.nvim
 
-TODO
-FIXME
-b
-ra_mod
-ra_mod again
+something A1 something
+
+something FIXME somting
 
 - [ ] A1 test
-
-ra_mod02

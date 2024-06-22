@@ -28,36 +28,21 @@ end
 local function apply_syntax_highlighting(bufnr, start_line, end_line)
 	bufnr = bufnr or 0
 	start_line = start_line or 0
-	end_line = end_line or 0
+	end_line = end_line or -1
 
-	-- Clear existing highlights
+	-- Clear existing highlights in the specified range
 	vim.api.nvim_buf_clear_namespace(bufnr, -1, start_line, end_line)
 
+	-- Get the lines in the specified range
 	local lines = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line, false)
 
 	-- Apply custom syntax rules
 	for _, rule in ipairs(M.syntax_rules) do
-		vim.fn.matchadd(rule.group, rule.pattern)
-	end
-
-	-- Apply custom syntax rules
-	for _, rule in ipairs(M.syntax_rules) do
 		for i, line in ipairs(lines) do
-			for match in line:gmatch(rule.pattern) do
-				local s, e = line:find(match, 1, true)
-				if s then
-					-- Highlight only the match group (assuming it's the first capture group)
-					local capture_start, capture_end = line:find("%(A%d%)", s, false)
-					if capture_start then
-						vim.api.nvim_buf_add_highlight(
-							bufnr,
-							-1,
-							rule.group,
-							start_line + i - 1,
-							capture_start,
-							capture_end - 1
-						)
-					end
+			for match, capture in line:gmatch("()(" .. rule.pattern .. ")") do
+				if match then
+					local s, e = match - 1, match - 1 + #capture
+					vim.api.nvim_buf_add_highlight(bufnr, -1, rule.group, start_line + i - 1, s, e)
 				end
 			end
 		end
