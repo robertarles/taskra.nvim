@@ -76,7 +76,7 @@ end
 -- Function to set up key mappings
 local function setup_mappings()
 	for name, func in pairs(M.text_functions) do
-		vim.api.nvim_set_keymap("n", "<Leader>t" .. name, "", {
+		vim.api.nvim_set_keymap("n", "<Leader>it" .. name, "", {
 			noremap = true,
 			callback = func,
 			desc = "Text function: " .. name,
@@ -84,7 +84,7 @@ local function setup_mappings()
 	end
 
 	for name, func in pairs(M.workflow_functions) do
-		vim.api.nvim_set_keymap("n", "<Leader>w" .. name, "", {
+		vim.api.nvim_set_keymap("n", "<Leader>ik" .. name, "", {
 			noremap = true,
 			callback = func,
 			desc = "Workflow function: " .. name,
