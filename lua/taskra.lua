@@ -23,6 +23,14 @@ local function apply_syntax_highlighting(bufnr, start_line, end_line)
 	start_line = start_line or 0
 	end_line = end_line or -1
 
+	-- check start_line and end_line to ensure they are valid for this buffer
+	if start_line < 0 then
+		start_line = 0
+	end
+	if end_line > vim.api.nvim_buf_line_count(bufnr) then
+		end_line = vim.api.nvim_buf_line_count
+	end
+
 	-- Get the lines in the specified range
 	local lines = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line, false)
 
