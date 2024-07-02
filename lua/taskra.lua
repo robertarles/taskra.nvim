@@ -111,7 +111,7 @@ function M.setup(opts)
 	setup_mappings()
 
 	-- create a vim command to reload the plubin
-	vim.api.nvim_create_user_command("taskra reload", function()
+	vim.api.nvim_create_user_command("TaskraReload", function()
 		package.loaded["taskra"] = nil
 		require("taskra").setup()
 		vim.cmd("bufdo e")
