@@ -93,7 +93,6 @@ function M.setup(opts)
 	opts = opts or {}
 
 	-- set some default highlight colors
-	vim.api.nvim_set_hl(0, "TaskraRed", { fg = "#FF4060" })
 	vim.api.nvim_set_hl(0, "TaskraRed", { fg = "#FF4000" })
 	vim.api.nvim_set_hl(0, "TaskraYellow", { fg = "#C7F000" })
 	vim.api.nvim_set_hl(0, "TaskraGreen", { fg = "#008B00" })
@@ -106,7 +105,6 @@ function M.setup(opts)
 	M.add_syntax_rule("- %[([^xX])%] ", "Warning")
 	M.add_syntax_rule("- %[([xX])%] ", "Error")
 
-	vim.api.nvim_set_hl(0, "RaModHighlight", { fg = "#00FF00", bold = true })
 	setup_autocommands()
 	setup_mappings()
 
