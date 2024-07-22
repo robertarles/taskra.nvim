@@ -10,14 +10,12 @@ Strict, task expectations
 - the prirotiy, following the `- [ ] `,  is single letter priority [ABCD] followed by a number (which I use to size the task, a fibonacci "story size" number)
 It does allow for a dot `.`, separated by a space, before the priority. I use the dot to signify activity on the task has taken place today, and my notesutilmanager uses t dot indicator as a flag and removes the dot, then journals or archives the entry.
 
-- [w] <span style="foreground-color: red;">A</span>3 test task entry
-  - [ ] A1 test subtask
-- [f] B2 testing
-- [x] . A3 testing another one with the '.' indicating work happened
-- [x] C7 and anther test
-   
+example:
+![Alt text](assets/task_highlights.png)
 
-.config/nvim/lua/plugins/user.lua entry for taskra
+Sorry, this doc has no install instructions, but below are config examples (currently the defaults)
+
+A .config/nvim/lua/plugins/user.lua entry for taskra
 
 ```lua
   {
