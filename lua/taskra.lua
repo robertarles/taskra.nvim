@@ -98,11 +98,28 @@ end
 function M.setup(opts)
 	opts = opts or {}
 
-	vim.api.nvim_set_hl(0, "RaModHighlight", { fg = "#00FF00", bold = true })
+	-- set some default highlight colors
+	vim.api.nvim_set_hl(0, "TaskraRed", { fg = "#FF4000" })
+	vim.api.nvim_set_hl(0, "TaskraYellow", { fg = "#C7F000" })
+	vim.api.nvim_set_hl(0, "TaskraGreen", { fg = "#008B00" })
+	vim.api.nvim_set_hl(0, "TaskraBlue", { fg = "#00008B" })
+
+	-- add some default syntax rules
+	M.add_syntax_rule("- %[.%] %.? ?([aA])%d ", "TaskraRed")
+	M.add_syntax_rule("- %[.%] %.? ?([bB])%d ", "TaskraYellow")
+	M.add_syntax_rule("- %[.%] %.? ?([cCdDeEfF])%d ", "TaskraGreen")
+	M.add_syntax_rule("- %[([^xX])%] ", "Warning")
+	M.add_syntax_rule("- %[([xX])%] ", "Error")
+
 	setup_autocommands()
 	setup_mappings()
 
-	-- You can add more setup logic here
+	-- create a vim command to reload the plubin
+	vim.api.nvim_create_user_command("TaskraReload", function()
+		package.loaded["taskra"] = nil
+		require("taskra").setup()
+		vim.cmd("bufdo e")
+	end, {})
 end
 
 return M
