@@ -1,11 +1,22 @@
 # taskra.nvim
 
+A task list assistant.
+
+Color highlights for my task priorities (A,B,C,D) automatically.
+
+Strict, task expectations
+- only in a markdown (.md) file
+- a task line starts with `- [ ] ` optionally with a status (e.g. `- [x]` is completed)
+- the prirotiy, following the `- [ ] `,  is single letter priority [ABCD] followed by a number (which I use to size the task, a fibonacci "story size" number)
+It does allow for a dot `.`, separated by a space, before the priority. I use the dot to signify activity on the task has taken place today, and my notesutilmanager uses t dot indicator as a flag and removes the dot, then journals or archives the entry.
+
+```
 - [w] A3 test
   - [ ] A1 test sub
 - [f] B2 testing
 - [x] . A3 testing another one with the '.' indicating work happened
 - [x] C7 and anther test
-
+```
 .config/nvim/lua/plugins/user.lua entry for taskra
 
 ```lua
