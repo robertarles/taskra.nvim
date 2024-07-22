@@ -20,7 +20,14 @@ local ns_id = vim.api.nvim_create_namespace("TaskRa")
 
 local function apply_syntax_highlighting(bufnr, start_line, end_line)
 	bufnr = bufnr or 0
+	-- if start_line is not a number, set it to 0
+	if type(start_line) ~= "number" then
+		start_line = 0
+	end
 	start_line = start_line or 0
+	if type(end_line) ~= "number" then
+		end_line = 0
+	end
 	end_line = end_line or -1
 
 	-- check start_line and end_line to ensure they are valid for this buffer
@@ -30,7 +37,6 @@ local function apply_syntax_highlighting(bufnr, start_line, end_line)
 	if end_line > vim.api.nvim_buf_line_count(bufnr) then
 		end_line = vim.api.nvim_buf_line_count
 	end
-
 	-- Get the lines in the specified range
 	local lines = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line, false)
 
