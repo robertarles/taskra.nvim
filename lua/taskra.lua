@@ -98,9 +98,9 @@ function M.setup(opts)
 	vim.api.nvim_set_hl(0, "TaskraBlue", { fg = "#00008B" })
 
 	-- add some default syntax rules
-	M.add_syntax_rule("- %[.%] %.? ?([aA])%d ", "TaskraRed")
-	M.add_syntax_rule("- %[.%] %.? ?([bB])%d ", "TaskraYellow")
-	M.add_syntax_rule("- %[.%] %.? ?([cCdDeEfF])%d ", "TaskraGreen")
+	M.add_syntax_rule("- %[.%] %.? ?([aA])%d+ ", "TaskraRed")
+	M.add_syntax_rule("- %[.%] %.? ?([bB])%d+ ", "TaskraYellow")
+	M.add_syntax_rule("- %[.%] %.? ?([cCdDeEfF])%d+ ", "TaskraGreen")
 	M.add_syntax_rule("- %[([^xX])%] ", "Warning")
 	M.add_syntax_rule("- %[([xX])%] ", "Error")
 
