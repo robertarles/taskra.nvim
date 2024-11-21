@@ -22,14 +22,20 @@ local function apply_syntax_highlighting(bufnr, start_line, end_line)
 	bufnr = bufnr or 0
 	start_line = start_line or 0
 	end_line = end_line or -1
+	if type(end_line) ~= "number" then
+		end_line = -1
+	end
 
 	-- check start_line and end_line to ensure they are valid for this buffer
 	if start_line < 0 then
 		start_line = 0
 	end
+	-- Make sure end_line is within the buffer's line count
 	if end_line > vim.api.nvim_buf_line_count(bufnr) then
 		end_line = vim.api.nvim_buf_line_count
 	end
+
+	-- Apply custom text functions
 	-- Get the lines in the specified range
 	local lines = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line, false)
 
