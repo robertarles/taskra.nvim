@@ -22,7 +22,7 @@ local function apply_syntax_highlighting(bufnr, start_line, end_line)
 	bufnr = bufnr or 0
 	start_line = start_line or 0
 	end_line = end_line or -1
-	if type(end_line) ~= "number" then
+	if type(end_line) == "number" then
 		end_line = -1
 	end
 
